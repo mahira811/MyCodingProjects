@@ -1,0 +1,150 @@
+import math
+import matplotlib.pyplot as plt
+import numpy as np
+x = []
+y = []
+function = input("Enter function whose graph is to be generated: ")
+match function:
+  #1
+  case "Log":
+    for i in range(1,1000):
+      x.append(i)
+    for i in x:
+      y.append(math.log10(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Log')
+    plt.title('Logarithm Graph')
+
+  #2
+  case "Exp":
+    for i in range(-100,101):
+      x.append(i)
+    for i in x:
+      y.append(math.exp(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Exponential')
+    plt.title('Exponential Graph')
+
+  #3
+  case "Sine":
+    for i in range(-720,721):
+      x.append(math.radians(i))
+    for i in x:
+      y.append(math.sin(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Sine')
+    plt.title('Sine Graph')
+
+  #4
+  case "Cosec":
+    deg = np.arange(-720,720)
+    x = np.radians(deg)
+    y = 1/np.sin(x)
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Cosec')
+    plt.title('Cosec Graph')
+
+  #5
+  case "Cos":
+    for i in range(-720,721):
+      x.append(math.radians(i))
+    for i in x:
+      y.append(math.cos(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Cosine')
+    plt.title('Cosine Graph')
+
+  #6
+  case "Sec":
+    for i in range(-720,721):
+      x.append(math.radians(i))
+    for i in x:
+      if(math.cos(i)==0):
+        continue
+      else:
+        y.append(1/math.cos(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Sec')
+    plt.title('Sec Graph')
+
+  #7
+  case "Tan":
+    for i in range(-720,721):
+      x.append(math.radians(i))
+    for i in x:
+      y.append(math.tan(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Tan')
+    plt.title('Tan Graph')
+
+  #8
+  case "Cot":
+    for i in range(-720,721):
+      if(math.tan(i)==0):
+        continue
+      else:
+        x.append(math.radians(i))
+    for i in x:
+      if(math.tan(i)==0):
+        continue
+      else:
+        y.append(1/math.tan(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Cot')
+    plt.title('Cot Graph')
+
+  #9
+  case "Root":
+    for i in range(0, 101):
+      x.append(i)
+    for i in x:
+      y.append(i**0.5)
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Root')
+    plt.title('Root Graph')
+
+  #10
+  case "CubeRoot":
+    for i in range(-100,101):
+      x.append(i)
+    for i in x:
+      y.append(math.cbrt(i))
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('CubeRoot')
+    plt.title('CubeRoot Graph')
+
+  #11
+  case "Power":
+    for i in range(-100,101):
+      x.append(i)
+    p = int(input('Which exponent\'s graph do you wish to see?'))
+    for i in x:
+      y.append(i**p)
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Power')
+    plt.title('Power Graph')
+
+  #12
+  case "Mod":
+    for i in range(-125,126):
+      x.append(i)
+    for i in x:
+      if(i<0):
+        y.append(-i)
+      if(i>=0):
+        y.append(i)
+    plt.plot(x,y)
+    plt.xlabel('Numbers')
+    plt.ylabel('Mod')
+    plt.title('Mod Graph')
