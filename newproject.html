@@ -1,0 +1,57 @@
+<html ng-app="myapp">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<style>
+		body{
+			text-align: center;
+			background-color: aqua;
+		}	
+		h1{
+			transition: background-color 0.4s;
+			text-shadow: 2px 3px;
+			font-size:65px
+		}
+		input{
+			height: 30px; width: 400px;
+			background-color: pink;
+		}
+	</style>
+	
+	<body ng-controller="myctrl">
+		<h1 id = "pd"><b>Your Personal Dictionary<b></h1>	
+		<h2 style = "text-align:center">Type in your word:</h2>
+		<input type = "text" ng-model = "Word">
+		<div ng-repeat="item in allWords | filter:{Word: Word}" ng-if = "Word.length>=1">
+				<h2>{{ item.Word }}</h2>
+      				<p><strong>Meaning:</strong> {{ item.Meaning }}</p>
+     				<p>"{{ item.Sentence }}"</p>
+   		 </div>
+	</body>
+	<script>
+		var a = document.getElementById("pd");
+		function change(){
+				if (a.style.color == "black"){
+					a.style.color = "orange";
+				} 
+				else{
+					a.style.color = "black";
+				}
+			
+		}
+		setInterval(change,400);		
+	</script>
+	<script>
+		var app = angular.module('myapp',[]);
+		app.controller('myctrl', function($scope, $http) {
+            			$scope.allWords = [];
+            			$scope.Word = "";
+
+        			$http.get('http://127.0.0.1:5000/api/words')
+                			.then(function(response) {
+                   		 	$scope.allWords = response.data;
+                  		 	 console.log("Data loaded successfully!");
+                			}, function(error) {
+                   			 console.error("Error fetching data. Is your Python server running?", error);
+                			});
+        		});
+	</script>
+</html>
